@@ -12,8 +12,9 @@ module.exports=(sequelize,DataTypes )=>{
             allowNull:false,
         },
         pitch:{
-            type:DataTypes.STRING,
+            type:DataTypes.STRING(2000),
             allowNull:false,
+            
 
         }
         ,

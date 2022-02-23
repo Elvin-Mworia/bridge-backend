@@ -45,8 +45,10 @@ app.use("/user",User);
 app.use("/stripe",Stripe);
 
 
+
 const port=3001;
 //attempting to connect to the database first before starting the server
+
 db.sequelize.sync({logging:console.log,force:false}).then(()=>{
     
     console.log("Connection to the database established");

@@ -42,18 +42,21 @@ router.post('/sub', async (req, res) => {
   
     res.json({'client_secret': client_secret, 'status': status});
   })
+  
+//payment of ideas
   router.post('/pay', async (req, res) => {
     const {email,amount} = req.body;
     
     const paymentIntent = await stripe.paymentIntents.create({
-        amount: amount, 
+        amount: amount,
+       
         currency: 'usd',
         // Verify your integration in this guide by including this parameter
         metadata: {integration_check: 'accept_a_payment'},
-        receipt_email: email,
       });
 
       res.json({'client_secret': paymentIntent['client_secret']})
+      console.log(res);
 })
 
 

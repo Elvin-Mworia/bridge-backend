@@ -6,20 +6,13 @@ module.exports=(sequelize,DataTypes )=>{
             defaultValue:DataTypes.UUIDV4,
             primaryKey:true
         },
-        
-        
-        ideaid:{
+        customerid:{
             type:DataTypes.STRING,
             allowNull:false,
 
         },
        
-        price:{
-         type:DataTypes.INTEGER,
-         allowNull:false,
-         
-         
-        },
+       
         time:{
             type:DataTypes.STRING,
             allowNull:false,

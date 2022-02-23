@@ -8,6 +8,7 @@ try{
   
     const user=await Users.findByPk(Id);
     res.json(user);
+    console.log(user);
 }
 catch(err){
     console.log(`no user with the following id:${id} was found`);

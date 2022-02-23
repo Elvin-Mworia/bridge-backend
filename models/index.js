@@ -34,4 +34,14 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+//Association
+
+
+// db.IdeasBought.hasMany(db.Ideas,{as:"ideas",constraints:false,foreignKey:"IdeasBoughtId"});
+
+db.Ideas.hasMany(db.IdeasBought);
+db.IdeasBought.belongsTo(db.Ideas);
+
+
+
 module.exports = db;

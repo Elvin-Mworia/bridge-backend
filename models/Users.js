@@ -11,6 +11,7 @@ module.exports=(sequelize,DataTypes )=>{
         email:{
             type:DataTypes.STRING,
             allowNull:false,
+            unique:true
         
         },
         id:{
@@ -27,7 +28,11 @@ module.exports=(sequelize,DataTypes )=>{
             type:DataTypes.STRING,
             defaultValue:"entrepreneur",
         },
-      
+      plan:{
+            type:DataTypes.STRING,
+            
+            allowNull:true
+      }
        
         
 

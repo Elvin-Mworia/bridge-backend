@@ -9,8 +9,9 @@ module.exports=(sequelize,DataTypes )=>{
         
         
         pitch:{
-            type:DataTypes.STRING,
+            type:DataTypes.STRING(2000),
             allowNull:false,
+            
 
         },
         pitcherid:{
