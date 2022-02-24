@@ -15,16 +15,20 @@ router.patch("/update/:id", function _callee(req, res) {
           Id = id.substr(1, id.length);
           data = {
             email: req.body.email,
+            profilepicture: req.file.file,
             entreprenuerid: Id,
             contact: req.body.contact,
             city: req.body.city,
             county: req.body.county,
             country: req.body.country,
-            socialmedia: req.body.socialmedia,
-            profilepicture: req.body.profilepicture
+            socialmedia: req.body.socialmedia
           };
           _context.next = 5;
-          return regeneratorRuntime.awrap(Bio.create(data));
+          return regeneratorRuntime.awrap(Bio.update(data, {
+            where: {
+              entreprenuerid: Id
+            }
+          }));
 
         case 5:
           updated = _context.sent;

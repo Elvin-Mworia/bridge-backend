@@ -6,7 +6,8 @@ var path = require("path");
 
 var storage = multer.diskStorage({
   destination: function destination(req, file, cb) {
-    cb(null, path.resolve(__dirname, './images'));
+    // cb(null,path.resolve(__dirname,'./images' ));
+    cb(null, 'images');
   },
   filename: function filename(req, file, cb) {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -28,6 +29,6 @@ var upload = multer({
 
     cb('give the proper file formats to upload');
   }
-}).single("image");
+}).single("file");
 module.exports = upload;
 //# sourceMappingURL=upload.dev.js.map

@@ -41,7 +41,7 @@ app.use(express.urlencoded({
 }));
 app.use(logger); //static files ie profile pictures
 
-app.use("/images", express["static"]("images")); //routes
+app.use("./images", express["static"]("./images")); //routes
 
 app.use("/auth", Auth);
 app.use("/pitch", Pitch);

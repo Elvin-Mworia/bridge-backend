@@ -15,11 +15,14 @@ const Stripe=require("./api/stripe");
 
 
 
+
 //middleware for logging out if an incoming request
 const logger=(req,res,next)=>{
     console.log("incoming request");
     next();
  }
+ //for capturing files and images and storing them in the image folder
+const upload=require("./upload");
 
  //allowed origin which the server can accept request from
  var corOption={
@@ -34,12 +37,12 @@ app.use(express.urlencoded({extended:true}));
   
 app.use(logger);
 //static files ie profile pictures
-app.use("/images",express.static("images"));
+app.use("./images",express.static("./images"));
 
 //routes
 app.use("/auth",Auth);
 app.use("/pitch",Pitch);
-app.use("/bio",Bio);
+app.use("/bio",upload,Bio);
 app.use("/idea",Idea);
 app.use("/user",User);
 app.use("/stripe",Stripe);

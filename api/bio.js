@@ -1,25 +1,26 @@
 const  router=require('express').Router();
 const {Bio}=require("../models");
 
+
 router.patch("/update/:id",async (req,res)=>{
     const id=req.params.id;
     const Id=id.substr(1,id.length);
     const data={
         email: req.body.email,
-        
+        profilepicture:req.file.file,
         entreprenuerid: Id,
         contact: req.body.contact,
         city: req.body.city,
         county: req.body.county,
         country: req.body.country,
         socialmedia: req.body.socialmedia,
-        profilepicture: req.body.profilepicture
+       
 
 
 
     }
 
-    const updated= await Bio.create(data);
+    const updated= await Bio.update(data,{where:{entreprenuerid:Id}});
     res.json({updated})
 })
 
