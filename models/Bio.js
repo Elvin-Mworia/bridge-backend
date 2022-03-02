@@ -2,8 +2,8 @@ module.exports=(sequelize,DataTypes )=>{
     const Bio=sequelize.define("Bio",{
         
         
-        entreprenuerid:{
-            type:DataTypes.STRING,
+        UserId:{
+            type:DataTypes.BLOB,
             allowNull:false,
 
         }

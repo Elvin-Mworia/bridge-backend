@@ -12,14 +12,8 @@ var axios = require("axios");
 
 var LocalDateTime = require("@js-joda/core").LocalDateTime;
 
-var mysql = require('mysql2');
+var mysql = require('mysql2'); //create an idea 
 
-var db = mysql.createConnection({
-  host: 'localhost',
-  user: "angerfist",
-  password: "9662@#$%&",
-  database: 'bridge'
-}); //create an idea 
 
 router.post("/create", function _callee(req, res) {
   var data, pitch;
@@ -122,54 +116,30 @@ router.get("/ideasbought/:id", function _callee3(req, res) {
 }); //inner join for finding ideas bought by a customer
 
 router.get("/ideascustomer/:id", function _callee4(req, res) {
-  var id, Id, ideas, Pitches;
+  var id, Id, ideas;
   return regeneratorRuntime.async(function _callee4$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
           id = req.params.id;
-          Id = id.substr(1, id.length); // console.log(Id);
-          //     var ideas;
-          //     db.connect((err)=>{
-          //         if(err) throw err;
-          //         console.log("connected to db...");
-          //     });
-          //     try{
-          //     db.query(`select * from bridge.ideas left join bridge.ideasboughts on bridge.ideas.id=bridge.ideasboughts.ideaid where bridge.ideasboughts.customerid="${Id}"`,(err,res)=>{
-          //         if(err) throw err;
-          //         console.log(res);
-          //     });
-          // }catch(err){
-          //     console.log("something went wrong");
-          // }finally{
-          //     db.close((err)=>{
-          //     if(err){ throw err};
-          //    }); 
-          //    console.log("finished updating from db and safely exiting....");
-          // } 
-          // res.json(ideas);
-          // console.log(ideas);
-
+          Id = id.substr(1, id.length);
           _context4.next = 4;
           return regeneratorRuntime.awrap(Ideas.findAll({
             include: [{
               model: IdeasBought,
-              required: false
+              required: true,
+              where: {
+                customerid: Id
+              }
             }]
           }));
 
         case 4:
           ideas = _context4.sent;
-          Pitches = [];
-          ideas.forEach(function (b, index, arr) {
-            axios.get("http://localhost:3001/idea/ideas/:".concat(b.IdeaId)).then(function (res) {
-              Pitches.push(res.data);
-            });
-          });
-          res.json(Ideas);
-          console.log(Ideas);
+          res.json(ideas);
+          console.log(ideas);
 
-        case 9:
+        case 7:
         case "end":
           return _context4.stop();
       }
@@ -211,7 +181,8 @@ router.get("/ideas/:id", function _callee5(req, res) {
       }
     }
   }, null, null, [[1, 10]]);
-});
+}); //route to update ideasbought table
+
 router.post("/bought", function _callee6(req, res) {
   var data, pitch;
   return regeneratorRuntime.async(function _callee6$(_context6) {

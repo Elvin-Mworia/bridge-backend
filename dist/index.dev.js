@@ -8,7 +8,9 @@ var app = express();
 
 var cors = require('cors');
 
-var db = require("./models"); //controllers
+var db = require("./models");
+
+var fileupload = require("express-fileupload"); //controllers
 
 
 var Auth = require("./api/auth");
@@ -27,7 +29,10 @@ var Stripe = require("./api/stripe"); //middleware for logging out if an incomin
 var logger = function logger(req, res, next) {
   console.log("incoming request");
   next();
-}; //allowed origin which the server can accept request from
+}; //for capturing files and images and storing them in the image folder
+
+
+var upload = require("./upload"); //allowed origin which the server can accept request from
 
 
 var corOption = {
@@ -35,13 +40,15 @@ var corOption = {
 }; //setting up cors
 
 app.use(cors(corOption));
+app.use(fileupload());
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
 app.use(logger); //static files ie profile pictures
+//app.use("./images",express.static("./images"));
 
-app.use("./images", express["static"]("./images")); //routes
+app.use("./api/images", express["static"]("./api/images")); //routes
 
 app.use("/auth", Auth);
 app.use("/pitch", Pitch);

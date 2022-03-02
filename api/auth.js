@@ -9,17 +9,17 @@ router.post("/register", async (req,res)=>{
     const {firstname,secondname,email,password,customer,price}=req.body;
     var plan;
     // console.log(price);
-    if(price==="2" && customer==="investor"){
+    if(price==="2" && customer==="Investor"){
       plan="bronze";
       
       console.log(plan);
     }
-    else if(price==="5"  && customer==="investor"){
+    else if(price==="5"  && customer==="Investor"){
       
       plan="silver";
       console.log(plan);
     }
-     else if (price==="10" && customer==="investor"){
+     else if (price==="10" && customer==="Investor"){
       plan="gold";
       console.log(plan);
 
@@ -48,12 +48,12 @@ router.post("/register", async (req,res)=>{
         if(customer==="investor"){
             const newUser={firstname:firstname,lastname:secondname,email:email,password:hash,customer:customer,plan:plan}
             const user= await Users.create(newUser);
-            res.json({message:`Thank ${user.firstname} for registering`});
+            res.json({message:`Thank you ${user.firstname} for registering`});
         }else{
             const newUser={firstname:firstname,lastname:secondname,email:email,password:hash,customer:customer}
             console.log(newUser);
             const user= await Users.create(newUser);
-            res.json({message:`Thank ${user.firstname} for registering`});
+            res.json({message:`Thank you ${user.firstname} for registering`});
 
         }
       }

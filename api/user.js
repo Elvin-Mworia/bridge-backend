@@ -1,6 +1,8 @@
 const  router=require('express').Router();
 const {Users}=require("../models");
 
+
+//getting a specific user
 router.get("/:id",async (req,res)=>{
     const id=req.params.id;
 try{

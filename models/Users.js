@@ -15,7 +15,7 @@ module.exports=(sequelize,DataTypes )=>{
         
         },
         id:{
-            type:DataTypes.UUID,
+            type:DataTypes.UUID(60),
             defaultValue:DataTypes.UUIDV4,
             primaryKey:true
         },

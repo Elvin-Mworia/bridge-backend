@@ -3,6 +3,7 @@ require("dotenv").config();
 const app=express();
 const cors=require('cors');
 const db=require("./models");
+const fileupload=require("express-fileupload")
 
 //controllers
 const Auth=require("./api/auth");
@@ -22,6 +23,7 @@ const logger=(req,res,next)=>{
     next();
  }
  //for capturing files and images and storing them in the image folder
+
 const upload=require("./upload");
 
  //allowed origin which the server can accept request from
@@ -31,18 +33,20 @@ const upload=require("./upload");
 
 //setting up cors
 app.use(cors(corOption));
-
+app.use(fileupload())
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
   
 app.use(logger);
+
 //static files ie profile pictures
-app.use("./images",express.static("./images"));
+//app.use("./images",express.static("./images"));
+app.use("./api/images",express.static("./api/images"));
 
 //routes
 app.use("/auth",Auth);
 app.use("/pitch",Pitch);
-app.use("/bio",upload,Bio);
+app.use("/bio",Bio);
 app.use("/idea",Idea);
 app.use("/user",User);
 app.use("/stripe",Stripe);

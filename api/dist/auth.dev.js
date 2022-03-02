@@ -23,13 +23,13 @@ router.post("/register", function _callee2(req, res) {
           _req$body = req.body, firstname = _req$body.firstname, secondname = _req$body.secondname, email = _req$body.email, password = _req$body.password, customer = _req$body.customer, price = _req$body.price;
 
           // console.log(price);
-          if (price === "2" && customer === "investor") {
+          if (price === "2" && customer === "Investor") {
             plan = "bronze";
             console.log(plan);
-          } else if (price === "5" && customer === "investor") {
+          } else if (price === "5" && customer === "Investor") {
             plan = "silver";
             console.log(plan);
-          } else if (price === "10" && customer === "investor") {
+          } else if (price === "10" && customer === "Investor") {
             plan = "gold";
             console.log(plan);
           } else {
@@ -93,7 +93,7 @@ router.post("/register", function _callee2(req, res) {
                     case 12:
                       user = _context.sent;
                       res.json({
-                        message: "Thank ".concat(user.firstname, " for registering")
+                        message: "Thank you ".concat(user.firstname, " for registering")
                       });
                       _context.next = 22;
                       break;
@@ -113,7 +113,7 @@ router.post("/register", function _callee2(req, res) {
                     case 20:
                       _user = _context.sent;
                       res.json({
-                        message: "Thank ".concat(_user.firstname, " for registering")
+                        message: "Thank you ".concat(_user.firstname, " for registering")
                       });
 
                     case 22:
